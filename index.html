@@ -43,7 +43,7 @@
   </body>
 </html> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   let myObj={
     name:"deep",
     age:22
@@ -52,4 +52,40 @@
   localStorage.setItem("myObj",myObj)
   console.log(localStorage)
 
-</script>
+</script> -->
+
+<html>
+  <body>
+    <form onsubmit="saveToLocalStorage(event)">
+      <label>Name</label>
+      <input type="text" name="username" required>
+      <label>EmailId</label>
+      <input type="email" name="emailId" required>
+      <label>phoneNmmber</label>
+      <input type="tel" name="phonenumber" required>
+      <button>submit</button>
+    </form>
+    <ul id="listOfitems"></ul>
+    <script>
+      function saveToLocalStorage(event){
+        event.preventDefault();
+        const name=event.target.username.value;
+        const email=event.target.emailId.value;
+        const phone=event.target.phonenumber.value;
+        const obj={
+          name,
+          email,
+          phonenumber
+        };
+        localStorage.setItem(obj.email, JSON.stringify(obj))
+        showUserOnScreen(obj)
+      }
+      function showUserOnScreen(obj){
+        const parentElem=document.getElementById('listOfitems')
+        const childElem=document.createElement('li')
+        childElem.textContent=obj.name+'-'+obj.email+'-'+obj.phonenumber
+        parentElem.appendChild(childElem)
+      }
+    </script>
+  </body>
+</html>
